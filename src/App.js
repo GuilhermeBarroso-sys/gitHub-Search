@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Avatar from './avatar.png';
-import './App.css';
+
 
 function App() {
   const [search, setSearch] = useState('');
@@ -19,8 +19,8 @@ function App() {
     setSearch(event.target.value)
   }
   return (
-   <div className = "container text-center">
-     <h1 className = "py-5 text-uppercase">Encontre um perfil no GitHub</h1>
+   <div className = "container  text-center">
+     <h1 className = "py-5 text-uppercase text-primary">Encontre um perfil no GitHub</h1>
      <form onSubmit = {handleSubmit}>
        <div className = "form-group">
          <label>Digite o usuário do github</label>
@@ -52,9 +52,19 @@ function App() {
             <a href = {userData.html_url} target = "_blank" >{userData.name}</a>
           </h1>
           <h3>{userData.location}</h3>
-          <p>
-            <a href = {userData.blog} className = "text-info">{userData.blog}</a>
-          </p>
+          {userData.bio != undefined && (
+            <p>
+              Bio:
+              
+              <p className = "text-info">
+                {userData.bio}
+              </p>
+            </p>
+          )}
+          <span >Seguidores: {userData.followers}</span>
+          <span className = "ml-4">Seguindo: {userData.following}</span>
+          <p className = "pt-1"></p>
+          <p>Repositórios públicos: {userData.public_repos}</p>
         </div>
       )}
       
